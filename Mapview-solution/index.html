@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sankalp Map View</title>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="bundle/css/map.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2 class="section-title">Sankalp</h2>
+            <div id="layer-toggles">
+                <h3 class="section-title">Layers</h3>
+                <!-- Layer buttons will be added here dynamically -->
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div id="map-container">
+            <div id="map"></div>
+        </div>
+
+        <!-- Model Viewer -->
+        <div id="model-viewer" class="model-viewer">
+        
+                <button class="close-button">&times;</button>
+           
+            <iframe id="modelFrame" allowfullscreen="1"></iframe>
+            <iframe id="floorPlanFrame" allowfullscreen="1"></iframe>
+        </div>
+
+        <!-- Sidebar Toggle Button -->
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="bundle/js/map.js"></script>
+</body>
+</html>

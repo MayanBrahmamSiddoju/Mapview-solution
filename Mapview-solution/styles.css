@@ -1,0 +1,258 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #f4f4f9;
+    padding: 10px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    box-sizing: border-box;
+    position: fixed;
+    left: -250px;
+    transition: left 0.3s ease-in-out;
+    z-index: 1000;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+/* Toggle Button Style */
+.sidebar-toggle {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    z-index: 998;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+.sidebar-toggle.active {
+    left: 175px;
+    z-index:1200;
+    top:3px;
+}
+
+.sidebar-toggle i {
+    font-size: 24px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-toggle.active i {
+    transform: rotate(180deg);
+}
+
+/* Content and Model Viewer Styles */
+.content-container {
+    flex: 1;
+    margin-left: 0;
+    transition: margin-left 0.3s ease-in-out;
+    position: relative;
+}
+
+.content-container.shifted {
+    margin-left: 250px;
+}
+
+/* Enhanced 3D Viewer Styles */
+.model-viewer {
+   
+    position: fixed;
+    top: 0;
+    right: -50%;
+    width: 50%;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+    border-radius:0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 0;
+    box-sizing: border-box;
+    transition:right 0.4s ease;
+}
+
+.model-viewer.active {
+   
+    right: 0;
+}
+
+#modelFrame {
+    width: 100%; /* Full width of the slider */
+    height: 100%; /* Full height of the slider */
+    border: none; /* Remove border */
+    border-radius: 0; /* Remove any border radius for full coverage */
+    background: #f8f9fa; /* Optional: background color can remain */
+}
+
+#floorPlanFrame {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 300px; /* Increased from 250px */
+    height: 300px; /* Increased from 250px */
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background: white;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+#floorPlanFrame:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Button and Control Styles */
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.model-btn {
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.model-btn:hover {
+    background-color: #45a049;
+    transform: translateX(5px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Layer Controls and Other UI Elements */
+#layer-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.layer-toggle {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.layer-toggle:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    transform: translateX(5px);
+}
+
+.close-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 68, 68, 0.9);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.close-button:hover {
+    background: #ff4444;
+    transform: rotate(90deg);
+}
+
+.section-divider {
+    height: 2px;
+    background-color: #e0e0e0;
+    margin: 20px 0;
+}
+
+#map-container {
+    height: 100%;
+    width: 100%;
+}
+
+/* Animation for sidebar elements */
+.sidebar .section-title,
+.sidebar .layer-toggle,
+.sidebar .model-btn {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.3s ease;
+}
+
+.sidebar.active .section-title,
+.sidebar.active .layer-toggle,
+.sidebar.active .model-btn {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Stagger animations */
+.sidebar.active .section-title { transition-delay: 0.1s; }
+.sidebar.active .layer-toggle { transition-delay: 0.2s; }
+.sidebar.active .model-btn:nth-child(1) { transition-delay: 0.3s; }
+.sidebar.active .model-btn:nth-child(2) { transition-delay: 0.4s; }
+.sidebar.active .model-btn:nth-child(3) { transition-delay: 0.5s; }
+.sidebar.active .model-btn:nth-child(4) { transition-delay: 0.6s; }
+.sidebar.active .model-btn:nth-child(5) { transition-delay: 0.7s; }
+.sidebar.active .model-btn:nth-child(6) { transition-delay: 0.8s; }

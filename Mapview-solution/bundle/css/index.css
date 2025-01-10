@@ -1,0 +1,69 @@
+
+/* Container for the entire layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width:50vw;
+  height: 50vh;
+  z-index: 100;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+/* Heading wrapper to control width */
+.heading-wrapper {
+  width: 95%; /* Matches the width of the frame-container */
+  margin: 0 auto;
+}
+
+/* Heading styling */
+.heading {
+  text-align: center;
+  padding: 20px 0; /* Increased padding for a bold look */
+  background-color: #4CAF50; /* Aesthetic green bar */
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Spacer between heading and the frame container */
+.spacer {
+  height: 10px; /* Space between heading and 3D model */
+}
+
+/* Frame container styling */
+.frame-container {
+  position: relative;
+  width: 95%; /* Matches the heading width */
+  height: 85%; /* Increased height for larger 3D model */
+  border-radius: 0 0 15px 15px; /* Rounded bottom corners */
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for aesthetics */
+}
+
+/* 3D model iframe */
+#modelFrame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Floor plan view iframe */
+#floorPlanFrame {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 300px; /* Adjust width of the floor plan iframe */
+  height: 300px; /* Adjust height of the floor plan iframe */
+  border: 2px solid white;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+

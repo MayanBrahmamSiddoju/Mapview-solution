@@ -1,0 +1,17 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "PERIMETER": "209.84 m", "ENCLOSED_AREA": "2765.2 sq m", "LENGTH": "52.825 m", "WIDTH": "52.017 m", "layer": "School", "BEARING": "" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 78.341481, 17.391984 ], [ 78.341477, 17.391522 ], [ 78.341974, 17.391513 ], [ 78.341988, 17.391983 ], [ 78.341481, 17.391984 ] ] ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "332.06 m", "ENCLOSED_AREA": "6827 sq m", "LENGTH": "", "WIDTH": "", "layer": "Play Ground", "BEARING": "" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 78.342090, 17.391711 ], [ 78.342279, 17.391634 ], [ 78.342984, 17.392020 ], [ 78.342238, 17.392655 ], [ 78.342075, 17.392557 ], [ 78.341991, 17.392430 ], [ 78.341975, 17.392292 ], [ 78.341986, 17.392222 ], [ 78.342041, 17.392015 ], [ 78.342084, 17.391818 ], [ 78.342090, 17.391711 ] ] ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "108.78 m", "ENCLOSED_AREA": "699.97 sq m", "LENGTH": "33.705 m", "WIDTH": "20.465 m", "layer": "Basket Ball Court", "BEARING": "" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 78.341656, 17.392688 ], [ 78.341649, 17.392384 ], [ 78.341842, 17.392381 ], [ 78.341852, 17.392686 ], [ 78.341656, 17.392688 ] ] ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "112.79 m", "ENCLOSED_AREA": "709.97 sq m", "LENGTH": "37.526 m", "WIDTH": "18.62 m", "layer": "Tennis Court", "BEARING": "" }, "geometry": { "type": "Polygon", "coordinates": [ [ [ 78.341458, 17.392383 ], [ 78.341636, 17.392381 ], [ 78.341641, 17.392720 ], [ 78.341466, 17.392723 ], [ 78.341458, 17.392383 ] ] ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "21586 sq m", "LENGTH": "615.19 m", "WIDTH": "", "layer": "Boundary", "BEARING": "" }, "geometry": { "type": "LineString", "coordinates": [ [ 78.341492, 17.391179 ], [ 78.342308, 17.391650 ], [ 78.342984, 17.392020 ], [ 78.342242, 17.392651 ], [ 78.342132, 17.392738 ], [ 78.341987, 17.392815 ], [ 78.341318, 17.393089 ], [ 78.341254, 17.392738 ], [ 78.341207, 17.392388 ], [ 78.341209, 17.392327 ], [ 78.341241, 17.392145 ], [ 78.341492, 17.391179 ] ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "21.96 m", "WIDTH": "", "layer": "", "BEARING": "147� 47' 44.2''" }, "geometry": { "type": "LineString", "coordinates": [ [ 78.341983, 17.392736 ], [ 78.342093, 17.392569 ] ] } }
+
+]
+}

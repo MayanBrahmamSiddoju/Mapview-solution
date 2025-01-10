@@ -1,0 +1,50 @@
+{
+"type": "FeatureCollection",
+"floors":[
+    "Block1 Ground","BlockUN Ground","Block3 Ground","Block4 Ground","Block4 First"
+],
+"features": [
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "Kitchen\/Store Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609189, 21.223371 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "HM \/ Staff Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609139, 21.223376 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "Staff Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609085, 21.223389 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "Class Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609100, 21.223443 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "Gaurd Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609106, 21.223496 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 Ground", "Space": "Kitchen \/ Store Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609112, 21.223565 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block3 Ground", "Space": "", "Block": "Block B" }, "geometry": { "type": "Point", "coordinates": [ 81.609118, 21.223640 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Kitchen & Toilets", "Block": "Block A" }, "geometry": { "type": "Point", "coordinates": [ 81.609109, 21.223698 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Anganawadi", "Block": "Block A" }, "geometry": { "type": "Point", "coordinates": [ 81.609120, 21.223738 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block1 Ground", "Space": "4A Class Room", "Block": "Block 1" }, "geometry": { "type": "Point", "coordinates": [ 81.609190, 21.223719 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block1 Ground", "Space": "3A Class Room", "Block": "Block 1" }, "geometry": { "type": "Point", "coordinates": [ 81.609258, 21.223703 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block1 Ground", "Space": "2A Class Room", "Block": "Block 1" }, "geometry": { "type": "Point", "coordinates": [ 81.609324, 21.223700 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block1 Ground", "Space": "Store Room", "Block": "Block 1" }, "geometry": { "type": "Point", "coordinates": [ 81.609309, 21.223625 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Toilets", "Block": "NA" }, "geometry": { "type": "Point", "coordinates": [ 81.609174, 21.223330 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Toilets", "Block": "NA" }, "geometry": { "type": "Point", "coordinates": [ 81.609134, 21.223336 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Toilets", "Block": "NA" }, "geometry": { "type": "Point", "coordinates": [ 81.609102, 21.223340 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "BlockUN Ground", "Space": "Toilets", "Block": "NA" }, "geometry": { "type": "Point", "coordinates": [ 81.609072, 21.223343 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 First", "Space": "Class Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609160, 21.223378 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 First", "Room": "Computer Lab", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609102, 21.223388 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 First", "Room": "Class Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609104, 21.223477 ] } }
+,
+{ "type": "Feature", "properties": { "PERIMETER": "", "ENCLOSED_AREA": "", "LENGTH": "", "WIDTH": "", "Floor": "Block4 First", "Room": "Class Room", "Block": "Block 4" }, "geometry": { "type": "Point", "coordinates": [ 81.609112, 21.223565 ] } }
+
+]
+}

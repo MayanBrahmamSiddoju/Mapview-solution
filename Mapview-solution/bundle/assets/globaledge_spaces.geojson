@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"floors":[
+    "Ground","First","Second"
+],
+"features": [
+{ "type": "Feature", "properties": { "Space": "ICT Lab", "Floor": "Ground", "type": "", "m":"zQV33R4HsGA" }, "geometry": { "type": "Point", "coordinates": [ 78.341915, 17.391781 ] } }
+,
+{ "type": "Feature", "properties": { "Space": "", "Floor": "", "type": "","m":"v1sp9avYgvY" }, "geometry": { "type": "Point", "coordinates": [ 78.341750, 17.391758 ] } }
+,
+{ "type": "Feature", "properties": { "Space": "Dining Hall", "Floor": "Second", "type": "marker","m":"Tqcgzn3Vfsv" }, "geometry": { "type": "Point", "coordinates": [ 78.341903, 17.391708 ] } }
+,
+{ "type": "Feature", "properties": { "Space": "Auditorium", "Floor": "First", "type": "marker","m":"7EdA6zKCTwx" }, "geometry": { "type": "Point", "coordinates": [ 78.341631, 17.391610 ] } }
+,
+{ "type": "Feature", "properties": { "Space": "Stores", "Floor": "First", "type": "marker","m":"y7Z9Tt1weYt" }, "geometry": { "type": "Point", "coordinates": [ 78.341905, 17.391632 ] } }
+,
+{ "type": "Feature", "properties": { "Space": "Biology Lab", "Floor": "Second", "type": "marker","m":"vywA6PDMhE7" }, "geometry": { "type": "Point", "coordinates": [ 78.341915, 17.391781 ] } }
+
+]
+}

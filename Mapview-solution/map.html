@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Model and Mapbox Viewer</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet">
+    <link href="./bundle/css/map.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to the new CSS file -->
+</head>
+<body>
+    <button class="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="main-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Map Controls Section -->
+            <div class="section-title">Sankalp</div>
+            <div class="layer-sidebar">
+                <div id="layer-container">
+                    <div class="subsection-title">Layers</div>
+                </div>
+                <div id="walkthrough-container"></div>
+            </div>
+
+            <!-- <div class="section-divider"></div>  -->
+
+            <!-- 3D Models Section -->
+            
+           
+        </div>
+        
+        <!-- Content Area -->
+        <div class="content-container">
+            <!-- 3D Model Viewer -->
+            <div class="model-viewer">
+                <button class="close-button">×</button>
+                <iframe id="modelFrame" src="" allowfullscreen allow="vr"></iframe>
+                <iframe id="floorPlanFrame" src="" allowfullscreen allow="vr"></iframe>
+            </div>
+
+            <!-- Map Container -->
+            <div id="map-container" class="map-container"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./bundle/js/map.js"></script>
+    <script>
+        // Initialize all DOM elements
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const contentContainer = document.querySelector('.content-container');
+        const modelViewer = document.querySelector('.model-viewer');
+        const modelFrame = document.getElementById('modelFrame');
+        const floorPlanFrame = document.getElementById('floorPlanFrame');
+        const closeButton = document.querySelector('.close-button');
+
+        // Initialize SDK variables
+        let modelSdk = null;
+        let floorPlanSdk = null;
+        let isInitialSync = true;
+
+        // Sidebar Toggle Functionality
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            sidebarToggle.classList.toggle('active');
+            contentContainer.classList.toggle('shifted');
+        });
+
+        // Close sidebar when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sidebar.contains(e.target) && 
+                !sidebarToggle.contains(e.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                sidebarToggle.classList.remove('active');
+                contentContainer.classList.remove('shifted');
+            }
+        });
+
+        // Prevent sidebar close when clicking inside
+        sidebar.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+
+        // Enhanced close model viewer function
+        function closeModelViewer() {
+            console.log('Closing model viewer...'); // Debug log
+            
+            // First clear the iframes
+            modelFrame.src = '';
+            floorPlanFrame.src = '';
+            
+            // Then remove active classes
+            modelViewer.classList.remove('active');
+            contentContainer.classList.remove('model-open'); // Adjust content container
+            document.getElementById('map-container').classList.remove('shifted'); // Reset the map position
+    // Clear the iframes after a short delay for the sliding effect
+    setTimeout(() => {
+        modelFrame.src = '';
+        floorPlanFrame.src = '';
+        modelSdk = null;
+        floorPlanSdk = null;
+    }, 400);
+            
+            // Reset SDKs
+            modelSdk = null;
+            floorPlanSdk = null;
+            
+            console.log('Model viewer closed'); // Debug log
+        }
+
+        // Multiple close button event listeners
+        closeButton.addEventListener('click', function(e) {
+            console.log('Close button clicked'); // Debug log
+            e.preventDefault();
+            e.stopPropagation();
+            closeModelViewer();
+        });
+
+        closeButton.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        // Add touch event for mobile
+        closeButton.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModelViewer();
+        });
+
+        // Escape key handler
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (modelViewer.classList.contains('active')) {
+                    closeModelViewer();
+                }
+                if (sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                    sidebarToggle.classList.remove('active');
+                    contentContainer.classList.remove('shifted');
+                }
+            }
+        });
+
+        // Model SDK Connection
+        modelFrame.addEventListener('load', async () => {
+            try {
+                modelSdk = await modelFrame.contentWindow.MP_SDK.connect(modelFrame.contentWindow);
+                console.log('Connected to 3D Model SDK:', modelSdk);
+                
+                modelSdk.Camera.pose.subscribe((pose) => {
+                    syncFloorPlan(pose);
+                });
+
+                modelSdk.on(modelSdk.Mattertag.Event.CLICK, syncFloorPlan);
+                modelSdk.on(modelSdk.Pointer.Event.CLICK, syncFloorPlan);
+                
+                await syncFloorPlan(modelSdk.Camera.pose.current);
+            } catch (error) {
+                console.error('Error connecting to 3D Model SDK:', error);
+            }
+        });
+
+        // Floor Plan SDK Connection
+        floorPlanFrame.addEventListener('load', async () => {
+            try {
+                floorPlanSdk = await floorPlanFrame.contentWindow.MP_SDK.connect(floorPlanFrame.contentWindow);
+                console.log('Connected to Floor Plan SDK:', floorPlanSdk);
+                await ensureFloorPlanMode();
+                await addFloorPlanMarker();
+                
+            } catch (error) {
+                console.error('Error connecting to Floor Plan SDK:', error);
+            }
+        });
+
+        // Add Floor Plan Marker
+        async function addFloorPlanMarker() {
+            try {
+                if (!floorPlanSdk) return;
+                
+                // Remove existing markers
+                const existingMarkers = await floorPlanSdk.Mattertag.getData();
+                for (const marker of existingMarkers) {
+                    await floorPlanSdk.Mattertag.remove(marker.sid);
+                }
+
+                // Add new position marker
+                await floorPlanSdk.Mattertag.add({
+                    label: "Current Position",
+                    description: "",
+                    anchorPosition: { x: 0, y: 0, z: 0 },
+                    stemVector: { x: 0, y: 0, z: 0.1 },
+                    color: { r: 1, g: 0, b: 0 },
+                    floorIndex: 0
+                });
+            } catch (error) {
+                console.error("Error adding floor plan marker:", error);
+            }
+        }
+
+        // Floor Plan Sync Function
+        async function syncFloorPlan(pose) {
+            try {
+                if (!floorPlanSdk || !pose) return;
+                
+                if (!pose.position) {
+                    pose = { position: { x: 0, y: 0, z: 0 } };
+                }
+
+                await ensureFloorPlanMode();
+
+                // Update marker position
+                const markers = await floorPlanSdk.Mattertag.getData();
+                if (markers.length > 0) {
+                    await floorPlanSdk.Mattertag.editPosition(markers[0].sid, {
+                        anchorPosition: pose.position,
+                        stemVector: { x: 0, y: 0, z: 0.1 }
+                    });
+                }
+
+                // Increased zoom levels
+                const zoomLevel = isInitialSync ? 8.5 : 7.5;
+
+                await floorPlanSdk.Camera.zoomTo({
+                    position: pose.position,
+                    rotation: { x: -85, y: 0, z: 0 },
+                    zoom: zoomLevel,
+                    transition: {
+                        duration: 400,
+                        easing: 'easeInOutQuad'
+                    }
+                });
+            } catch (error) {
+                console.error("Error synchronizing Floor Plan view:", error);
+            }
+        }
+
+        // Ensure Floor Plan Mode
+        async function ensureFloorPlanMode() {
+            try {
+                if (!floorPlanSdk) return;
+                
+                await floorPlanSdk.Mode.moveTo(floorPlanSdk.Mode.Mode.FLOORPLAN, {
+                    transition: floorPlanSdk.Mode.TransitionType.FLY
+                });
+
+                await floorPlanSdk.Floor.showAll();
+                await floorPlanSdk.Camera.setRotation({
+                    x: -85,
+                    y: 0,
+                    z: 0
+                });
+            } catch (error) {
+                console.error("Error ensuring FLOORPLAN mode:", error);
+            }
+        }
+
+        // Model Button Click Handlers
+        document.querySelectorAll('.model-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const modelId = button.getAttribute('data-model-id');
+                const modelName = button.textContent;
+                
+                // Clear existing content first
+                modelFrame.src = '';
+                floorPlanFrame.src = '';
+                
+                // Reset SDKs
+                modelSdk = null;
+                floorPlanSdk = null;
+                
+                // Show the viewer
+                modelViewer.classList.add('active');
+                // document.querySelector('.model-viewer-title').textContent = modelName;
+                 // Update title and show viewer
+                 document.getElementById('map-container').classList.add('shifted'); // Shift the map
+        modelViewer.classList.add('active'); // Activate the model viewer
+        contentContainer.classList.add('model-open'); // Adjust content container
+                // Load new model
+                setTimeout(() => {
+                    changeModel(modelId);
+                }, 100);
+            });
+        });
+
+        // Change Model Function
+        function changeModel(modelId) {
+            const modelUrl = `/bundle/showcase.html?m=${modelId}&applicationKey=h8m1gx75u1bezk7yaw7yggzwb&play=1`;
+            modelFrame.src = modelUrl;
+            floorPlanFrame.src = modelUrl;
+            isInitialSync = true;
+        }
+
+        // Top-down view toggle
+        window.addEventListener('keydown', (event) => {
+            if (event.key.toLowerCase() === 't') {
+                syncFloorPlan(modelSdk.Camera.pose.current);
+            }
+        });
+    </script>
+</body>
+</html>
